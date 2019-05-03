@@ -13,14 +13,6 @@ import GameplayKit
 struct Bubbles {
 
     
-    func randomCG() -> CGFloat {
-        return CGFloat(Float(arc4random()) / 0xFFFFFFFF)
-    }
-    
-    func randomCG(min: CGFloat, max: CGFloat) -> CGFloat {
-        return (randomCG() * (max - min)) + min
-    }
-    
     func createBubble() -> SKSpriteNode {
         let bubble = SKSpriteNode(imageNamed: "Circle White")
         bubble.size = CGSize(width: 50, height: 50)

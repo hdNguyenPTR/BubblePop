@@ -12,7 +12,7 @@ import GameplayKit
 class GameScene: SKScene {
     
     let instructLabel = SKLabelNode(text: "Pop the Bubbles")
-    var locationArray: [CGPoint] = []
+    var bubbleArray: [SKSpriteNode] = []
     var pointLabel: SKLabelNode!
     var point = 0 {
         didSet{
@@ -86,7 +86,12 @@ class GameScene: SKScene {
     
     func randomBubble(){
         let bubbleNumber = arc4random_uniform(maxBubble + 1)
-        run(SKAction.repeat(SKAction.run(addBubble), count: Int(bubbleNumber)))
+        run(SKAction.repeat(SKAction.run(addBubble), count:  Int(bubbleNumber + 1)))
+    }
+    
+    func removeBubble(point: SKSpriteNode){
+        self.bubbleArray = self.bubbleArray.filter() {$0 != point}
+        point.run(SKAction.removeFromParent())
     }
     
     func addBubble() {
@@ -95,28 +100,27 @@ class GameScene: SKScene {
             let bubbleT = bubbleBase.createBubble()
             var actualY:CGFloat
             var actualX:CGFloat
-//            repeat{
+            repeat{
                 actualY = randomCG(min: bubbleT.size.height  , max: size.height * 0.6)
                 actualX = randomCG(min: bubbleT.size.width   , max: (size.width) - (bubbleT.size.width))
-//            } while (isPositionEmpty(point: CGPoint(x: actualX, y: actualY)))
-            
-            
-            bubbleT.position = CGPoint(x: actualX, y: actualY)
+                bubbleT.position = CGPoint(x: actualX, y: actualY)
+            } while (isPositionFilled(node: bubbleT))
+            bubbleArray.append(bubbleT)
+            print(bubbleArray)
             addChild(bubbleT)
             let actionMove = SKAction.fadeIn(withDuration: 1)
-            let actionDone = SKAction.removeFromParent()
-            bubbleT.run(SKAction.sequence([actionMove,actionDone]))
+            let actionRemove = SKAction.run({self.removeBubble(point: bubbleT)})
+            //let actionDone = SKAction.removeFromParent()
+            bubbleT.run(SKAction.sequence([actionMove,actionRemove]))
         }
     }
 
-    func isPositionEmpty(point: CGPoint) -> Bool {
-        let b = SKSpriteNode(imageNamed: "Circle White")
-        b.size = CGSize(width: 50, height: 50)
-        for p in locationArray{
-            
+    func isPositionFilled(node: SKSpriteNode) -> Bool {
+        var result = false
+        for p in bubbleArray{
+            if(p.intersects(node)){result = true}
         }
-        
-        return true
+        return result
     }
     
     func popDidCollideWithBubble(pop: SKSpriteNode, bubble: SKSpriteNode) {
@@ -131,7 +135,7 @@ class GameScene: SKScene {
         }
         print(bubble)
         pop.removeFromParent()
-        bubble.removeFromParent()
+        removeBubble(point: bubble)
     }
 
 }
