@@ -16,6 +16,7 @@
 		F514B88D227974CD0077F95C /* Game_YoTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = F514B88C227974CD0077F95C /* Game_YoTests.swift */; };
 		F514B898227974CD0077F95C /* Game_YoUITests.swift in Sources */ = {isa = PBXBuildFile; fileRef = F514B897227974CD0077F95C /* Game_YoUITests.swift */; };
 		F514B8AB227991370077F95C /* Physics.swift in Sources */ = {isa = PBXBuildFile; fileRef = F514B8AA227991370077F95C /* Physics.swift */; };
+		F5ED45C6227BFB1E0049AC19 /* Bubbles.swift in Sources */ = {isa = PBXBuildFile; fileRef = F5ED45C5227BFB1E0049AC19 /* Bubbles.swift */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXContainerItemProxy section */
@@ -51,6 +52,7 @@
 		F514B897227974CD0077F95C /* Game_YoUITests.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Game_YoUITests.swift; sourceTree = "<group>"; };
 		F514B899227974CD0077F95C /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
 		F514B8AA227991370077F95C /* Physics.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Physics.swift; sourceTree = "<group>"; };
+		F5ED45C5227BFB1E0049AC19 /* Bubbles.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Bubbles.swift; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -149,6 +151,7 @@
 				F514B877227974CC0077F95C /* GameScene.swift */,
 				F514B879227974CC0077F95C /* GameViewController.swift */,
 				F514B8AA227991370077F95C /* Physics.swift */,
+				F5ED45C5227BFB1E0049AC19 /* Bubbles.swift */,
 			);
 			path = Scene;
 			sourceTree = "<group>";
@@ -294,6 +297,7 @@
 			isa = PBXSourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				F5ED45C6227BFB1E0049AC19 /* Bubbles.swift in Sources */,
 				F514B878227974CC0077F95C /* GameScene.swift in Sources */,
 				F514B87A227974CC0077F95C /* GameViewController.swift in Sources */,
 				F514B872227974CC0077F95C /* AppDelegate.swift in Sources */,
