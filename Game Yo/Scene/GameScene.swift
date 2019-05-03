@@ -52,7 +52,7 @@ class GameScene: SKScene {
     override func didMove(to view: SKView) {
         physicsWorld.gravity = .zero
         physicsWorld.contactDelegate = self
-        scene!.backgroundColor = .white
+        self.backgroundColor = .white
         instructLabel.position = CGPoint(x: view.frame.width * 0.5, y: view.frame.height * 0.8)
         instructLabel.fontColor = .black
         pointLabel = SKLabelNode()
@@ -66,10 +66,7 @@ class GameScene: SKScene {
         addChild(levelTimerLabel)
         addChild(pointLabel)
         addChild(instructLabel)
-            run(SKAction.repeatForever(
-                SKAction.sequence([SKAction.run(randomBubble),
-                                   SKAction.run(timer),
-                                   SKAction.wait(forDuration: 1)])
+            run(SKAction.repeatForever(SKAction.sequence([SKAction.run(randomBubble),SKAction.run(timer),                                  SKAction.wait(forDuration: 1)])
             ))
     }
     
@@ -123,16 +120,17 @@ class GameScene: SKScene {
             bubble.physicsBody?.collisionBitMask = PhysicsCategory.none // 5
             var actualY:CGFloat
             var actualX:CGFloat
-            repeat{
-                actualY = randomCG(min: bubble.size.height  , max: size.height * 0.7)
+//            repeat{
+                actualY = randomCG(min: bubble.size.height  , max: size.height * 0.6)
                 actualX = randomCG(min: bubble.size.width   , max: (size.width) - (bubble.size.width))
-            } while (isPositionEmpty(point: CGPoint(x: actualX, y: actualY)))
+//            } while (isPositionEmpty(point: CGPoint(x: actualX, y: actualY)))
             
             
             bubble.position = CGPoint(x: actualX, y: actualY)
             addChild(bubble)
             let actionMove = SKAction.fadeIn(withDuration: 1)
-            bubble.run(SKAction.sequence([actionMove]))
+            let actionDone = SKAction.removeFromParent()
+            bubble.run(SKAction.sequence([actionMove,actionDone]))
         }
     }
 
