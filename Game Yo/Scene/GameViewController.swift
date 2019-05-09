@@ -23,11 +23,24 @@ class GameViewController: UIViewController {
         skView.presentScene(scene)
         
     }
+    override func viewWillAppear(_ animated: Bool) {
+        super.viewWillAppear(animated)
+        navigationController?.setNavigationBarHidden(true, animated: animated)
+    }
+    
+    override func viewWillTransition(to size: CGSize, with coordinator: UIViewControllerTransitionCoordinator) {
+        self.view.setNeedsDisplay()
+    }
+    
+    override func viewWillDisappear(_ animated: Bool) {
+        super.viewWillDisappear(animated)
+        navigationController?.setNavigationBarHidden(false, animated: animated)
+    }
+
+    override var shouldAutorotate: Bool {
+        return false
+    }
 }
-//
-//    override var shouldAutorotate: Bool {
-//        return true
-//    }
 //
 //    override var supportedInterfaceOrientations: UIInterfaceOrientationMask {
 //        if UIDevice.current.userInterfaceIdiom == .phone {

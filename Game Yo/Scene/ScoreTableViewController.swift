@@ -8,9 +8,15 @@
 
 import Foundation
 import UIKit
-
+struct Score {
+    
+    var playerName : String
+    var points : Int64
+    
+}
 class ScoreTableViewController: UITableViewController {
     
+    var highScoreArray: [Score] = [Score]()
     override func viewDidLoad() {
         super.viewDidLoad()
         
@@ -20,6 +26,71 @@ class ScoreTableViewController: UITableViewController {
         // Uncomment the following line to display an Edit button in the navigation bar for this view controller.
         // self.navigationItem.rightBarButtonItem = self.editButtonItem
     }
+    
+    override func viewWillAppear(_ animated: Bool) {
+        let appDelegate = UIApplication.shared.delegate as! AppDelegate
+        let retrievedPoints = appDelegate.getPoints()
+        
+        for score in retrievedPoints {
+            highScoreArray.append(convertToPointsArray(point: score))
+        }
+        highScoreArray = retrievedPoints.map({
+            convertToPointsArray(point: $0)
+        })
+        
+    }
+    
+    func convertToPointsArray(point: HighScore) -> Score {
+        let newScore = Score(playerName: point.playerName!, points: point.score)
+        return newScore
+    }
+    
+    override func numberOfSections(in tableView: UITableView) -> Int {
+        return 1
+    }
+    
+    override func tableView(_ tableView: UITableView, numberOfRowsInSection section: Int) -> Int {
+        return highScoreArray.count
+    }
+    
+    override func tableView(_ tableView: UITableView, cellForRowAt indexPath: IndexPath) -> UITableViewCell {
+        let cell = tableView.dequeueReusableCell(withIdentifier: "scoreCell", for: indexPath)
+        
+        cell.textLabel?.text = highScoreArray[indexPath.row].playerName
+        cell.detailTextLabel?.text = String(highScoreArray[indexPath.row].points)
+        
+        return cell
+    }
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
     
     // MARK: - Table view data source
     

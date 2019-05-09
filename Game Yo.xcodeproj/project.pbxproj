@@ -16,11 +16,11 @@
 		F514B88D227974CD0077F95C /* Game_YoTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = F514B88C227974CD0077F95C /* Game_YoTests.swift */; };
 		F514B898227974CD0077F95C /* Game_YoUITests.swift in Sources */ = {isa = PBXBuildFile; fileRef = F514B897227974CD0077F95C /* Game_YoUITests.swift */; };
 		F514B8AB227991370077F95C /* Physics.swift in Sources */ = {isa = PBXBuildFile; fileRef = F514B8AA227991370077F95C /* Physics.swift */; };
+		F58B9ED3228428CD00D91FE0 /* BubblePop.xcdatamodeld in Sources */ = {isa = PBXBuildFile; fileRef = F58B9ED1228428CD00D91FE0 /* BubblePop.xcdatamodeld */; };
 		F5ED45C6227BFB1E0049AC19 /* Bubbles.swift in Sources */ = {isa = PBXBuildFile; fileRef = F5ED45C5227BFB1E0049AC19 /* Bubbles.swift */; };
 		F5F76E932283F9660048D0EB /* GameManager.swift in Sources */ = {isa = PBXBuildFile; fileRef = F5F76E922283F9660048D0EB /* GameManager.swift */; };
 		F5F76E97228401920048D0EB /* MenuViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = F5F76E96228401920048D0EB /* MenuViewController.swift */; };
 		F5F76E992284035B0048D0EB /* SettingController.swift in Sources */ = {isa = PBXBuildFile; fileRef = F5F76E982284035B0048D0EB /* SettingController.swift */; };
-		F5F76E9C2284072F0048D0EB /* BubblePop.xcdatamodeld in Sources */ = {isa = PBXBuildFile; fileRef = F5F76E9A2284072F0048D0EB /* BubblePop.xcdatamodeld */; };
 		F5F76E9E22840A0B0048D0EB /* ScoreTableViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = F5F76E9D22840A0B0048D0EB /* ScoreTableViewController.swift */; };
 /* End PBXBuildFile section */
 
@@ -57,11 +57,11 @@
 		F514B897227974CD0077F95C /* Game_YoUITests.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Game_YoUITests.swift; sourceTree = "<group>"; };
 		F514B899227974CD0077F95C /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
 		F514B8AA227991370077F95C /* Physics.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Physics.swift; sourceTree = "<group>"; };
+		F58B9ED2228428CD00D91FE0 /* BubblePop.xcdatamodel */ = {isa = PBXFileReference; lastKnownFileType = wrapper.xcdatamodel; path = BubblePop.xcdatamodel; sourceTree = "<group>"; };
 		F5ED45C5227BFB1E0049AC19 /* Bubbles.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Bubbles.swift; sourceTree = "<group>"; };
 		F5F76E922283F9660048D0EB /* GameManager.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = GameManager.swift; sourceTree = "<group>"; };
 		F5F76E96228401920048D0EB /* MenuViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = MenuViewController.swift; sourceTree = "<group>"; };
 		F5F76E982284035B0048D0EB /* SettingController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SettingController.swift; sourceTree = "<group>"; };
-		F5F76E9B2284072F0048D0EB /* BubblePop.xcdatamodel */ = {isa = PBXFileReference; lastKnownFileType = wrapper.xcdatamodel; path = BubblePop.xcdatamodel; sourceTree = "<group>"; };
 		F5F76E9D22840A0B0048D0EB /* ScoreTableViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ScoreTableViewController.swift; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
@@ -142,7 +142,7 @@
 		F514B8A5227982E50077F95C /* Assets */ = {
 			isa = PBXGroup;
 			children = (
-				F5F76E9A2284072F0048D0EB /* BubblePop.xcdatamodeld */,
+				F58B9ED1228428CD00D91FE0 /* BubblePop.xcdatamodeld */,
 				F514B87E227974CD0077F95C /* Assets.xcassets */,
 			);
 			path = Assets;
@@ -316,8 +316,8 @@
 				F5F76E932283F9660048D0EB /* GameManager.swift in Sources */,
 				F514B878227974CC0077F95C /* GameScene.swift in Sources */,
 				F5F76E97228401920048D0EB /* MenuViewController.swift in Sources */,
+				F58B9ED3228428CD00D91FE0 /* BubblePop.xcdatamodeld in Sources */,
 				F5F76E992284035B0048D0EB /* SettingController.swift in Sources */,
-				F5F76E9C2284072F0048D0EB /* BubblePop.xcdatamodeld in Sources */,
 				F514B87A227974CC0077F95C /* GameViewController.swift in Sources */,
 				F514B872227974CC0077F95C /* AppDelegate.swift in Sources */,
 				F5F76E9E22840A0B0048D0EB /* ScoreTableViewController.swift in Sources */,
@@ -646,14 +646,13 @@
 /* End XCConfigurationList section */
 
 /* Begin XCVersionGroup section */
-		F5F76E9A2284072F0048D0EB /* BubblePop.xcdatamodeld */ = {
+		F58B9ED1228428CD00D91FE0 /* BubblePop.xcdatamodeld */ = {
 			isa = XCVersionGroup;
 			children = (
-				F5F76E9B2284072F0048D0EB /* BubblePop.xcdatamodel */,
+				F58B9ED2228428CD00D91FE0 /* BubblePop.xcdatamodel */,
 			);
-			currentVersion = F5F76E9B2284072F0048D0EB /* BubblePop.xcdatamodel */;
-			name = BubblePop.xcdatamodeld;
-			path = ../../../../Desktop/BubblePopUI/BubblePop/BubblePop.xcdatamodeld;
+			currentVersion = F58B9ED2228428CD00D91FE0 /* BubblePop.xcdatamodel */;
+			path = BubblePop.xcdatamodeld;
 			sourceTree = "<group>";
 			versionGroupType = wrapper.xcdatamodel;
 		};

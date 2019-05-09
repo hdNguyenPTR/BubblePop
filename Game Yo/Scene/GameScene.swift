@@ -12,6 +12,7 @@ import GameplayKit
 class GameScene: SKScene {
     
     let instructLabel = SKLabelNode(text: "Pop the Bubbles")
+    var consecBubble:String = ""
     var bubbleArray: [SKSpriteNode] = []
     var pointLabel: SKLabelNode!
     var point = 0 {
@@ -19,10 +20,10 @@ class GameScene: SKScene {
             pointLabel.text = "Points: \(point)"
         }
     }
-    var maxBubble:UInt32 = 15
+    var maxBubble:UInt32 = UInt32(UserDefaults.standard.integer(forKey: "maxBubble"))
     var levelTimerLabel: SKLabelNode!
     //Immediately after leveTimerValue variable is set, update label's text
-    var levelTimerValue: Int = 60 {
+    var levelTimerValue: Int = UserDefaults.standard.integer(forKey: "timeMax") {
         didSet {
             levelTimerLabel.text = "Time left: \(levelTimerValue)"
         }
@@ -66,12 +67,12 @@ class GameScene: SKScene {
         addChild(levelTimerLabel)
         addChild(pointLabel)
         addChild(instructLabel)
-            run(SKAction.repeatForever(SKAction.sequence([SKAction.run(randomBubble),SKAction.run(timer),                                  SKAction.wait(forDuration: 1)])
+            run(SKAction.repeatForever(SKAction.sequence([SKAction.run(randomBubble),SKAction.run(timer),                                  SKAction.wait(forDuration: 1),SKAction.run(randomBubbleRemove)])
             ))
     }
 
     func timer(){
-        if self.levelTimerValue > 0{
+        if self.levelTimerValue > 0 {
             self.levelTimerValue -= 1
         }
     }
@@ -84,9 +85,22 @@ class GameScene: SKScene {
         return (randomCG() * (max - min)) + min
     }
     
-    func randomBubble(){
+    func randomBubble() {
         let bubbleNumber = arc4random_uniform(maxBubble + 1)
-        run(SKAction.repeat(SKAction.run(addBubble), count:  Int(bubbleNumber + 1)))
+        run(SKAction.repeat(SKAction.run(addBubble), count:  Int(bubbleNumber)))
+    }
+    
+    func randomBubbleRemove() {
+        if(levelTimerValue > 0){
+            let bubbleNumber = arc4random_uniform(UInt32(bubbleArray.count))
+            run(SKAction.repeat(SKAction.run(bubbleExpire), count:  Int(bubbleNumber)))
+        }
+    }
+    
+    func bubbleExpire() {
+        let expiredBubble = bubbleArray.randomElement()
+        self.bubbleArray = self.bubbleArray.filter() {$0 != expiredBubble}
+        expiredBubble?.run(SKAction.removeFromParent())
     }
     
     func removeBubble(point: SKSpriteNode){
@@ -106,12 +120,15 @@ class GameScene: SKScene {
                 bubbleT.position = CGPoint(x: actualX, y: actualY)
             } while (isPositionFilled(node: bubbleT))
             bubbleArray.append(bubbleT)
-            print(bubbleArray)
+            //print(bubbleArray)
             addChild(bubbleT)
             let actionMove = SKAction.fadeIn(withDuration: 1)
-            let actionRemove = SKAction.run({self.removeBubble(point: bubbleT)})
+            //let actionRemove = SKAction.run({self.removeBubble(point: bubbleT)})
             //let actionDone = SKAction.removeFromParent()
-            bubbleT.run(SKAction.sequence([actionMove,actionRemove]))
+            bubbleT.run(actionMove)
+        }
+        else{
+            
         }
     }
 
@@ -126,14 +143,49 @@ class GameScene: SKScene {
     func popDidCollideWithBubble(pop: SKSpriteNode, bubble: SKSpriteNode) {
         print("Hit")
         switch(bubble.name){
-        case "Red": point += 1
-        case "Pink": point += 2
-        case "Green": point += 5
-        case "Blue": point += 8
-        case "Black": point += 10
+        case "Red":
+            if(consecBubble == "Red"){
+                point += 2
+            }
+            else{
+                point += 1
+            }
+            consecBubble = "Red"
+        case "Pink":
+            if(consecBubble == "Pink"){
+                point += 3
+            }
+            else{
+                point += 2
+            }
+            consecBubble = "Pink"
+        case "Green":
+            if(consecBubble == "Green"){
+                point += 8
+            }
+            else{
+                point += 5
+            }
+            consecBubble = "Green"
+        case "Blue":
+            if(consecBubble == "Blue"){
+                point += 12
+            }
+            else{
+                point += 8
+            }
+            consecBubble = "Blue"
+        case "Black":
+            if(consecBubble == "Black"){
+                point += 15
+            }
+            else{
+                point += 10
+            }
+            consecBubble = "Black"
         default: point += 0
         }
-        print(bubble)
+        //print(bubble)
         pop.removeFromParent()
         removeBubble(point: bubble)
     }

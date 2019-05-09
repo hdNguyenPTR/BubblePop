@@ -40,27 +40,6 @@ class AppDelegate: UIResponder, UIApplicationDelegate {
     func applicationWillTerminate(_ application: UIApplication) {
         // Called when the application is about to terminate. Save data if appropriate. See also applicationDidEnterBackground:.
     }
-
-    
-    
-    // MARK: - Core Data stack
-    // get
-    func getPoints() -> [HighScore] {
-        let fetchRequest = NSFetchRequest<NSFetchRequestResult>(entityName: "HighScore")
-        do {
-            return try persistentContainer.viewContext.fetch(fetchRequest) as! [HighScore]
-        } catch {
-            fatalError("Can't fetch score")
-        }
-    }
-    
-    func setPoints(name: String, score: Int64) {
-        let points = HighScore(context: persistentContainer.viewContext)
-        points.playerName = name
-        points.score = score
-        
-        self.saveContext()
-    }
     
     lazy var persistentContainer: NSPersistentContainer = {
         /*
@@ -88,6 +67,27 @@ class AppDelegate: UIResponder, UIApplicationDelegate {
         })
         return container
     }()
+    
+    
+    // MARK: - Core Data stack
+    // get
+    func getPoints() -> [HighScore] {
+        let fetchRequest = NSFetchRequest<NSFetchRequestResult>(entityName: "HighScore")
+        do {
+            return try persistentContainer.viewContext.fetch(fetchRequest) as! [HighScore]
+        } catch {
+            fatalError("Can't fetch score")
+        }
+    }
+    
+    // set
+    func setPoints(name: String, score: Int64) {
+        let points = HighScore(context: persistentContainer.viewContext)
+        points.playerName = name
+        points.score = score
+        self.saveContext()
+    }
+    
     
     // MARK: - Core Data Saving support
     

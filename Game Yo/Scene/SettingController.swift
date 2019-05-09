@@ -11,16 +11,30 @@ import UIKit
 
 class SettingTableViewController: UITableViewController {
     
+    @IBOutlet weak var timeSlider: UISlider!
+    @IBOutlet weak var maxBubbleSlider: UISlider!
+    @IBOutlet weak var currentMaxBubble: UILabel!
+    @IBOutlet weak var currentTimeMax: UILabel!
     override func viewDidLoad() {
         super.viewDidLoad()
         
         // Uncomment the following line to preserve selection between presentations
-        // self.clearsSelectionOnViewWillAppear = false
+         self.clearsSelectionOnViewWillAppear = false
         
         // Uncomment the following line to display an Edit button in the navigation bar for this view controller.
         // self.navigationItem.rightBarButtonItem = self.editButtonItem
     }
     
+    @IBAction func changeTime(_ sender: Any) {
+        let timeMax = Int(timeSlider.value)
+        UserDefaults.standard.set(timeMax, forKey: "timeMax")
+        currentTimeMax.text = String(timeMax)
+    }
+    @IBAction func changeMax(_ sender: Any) {
+        let max = Int(maxBubbleSlider.value)
+        UserDefaults.standard.set( max , forKey: "maxBubble")
+        currentMaxBubble.text = String(max)
+    }
     // MARK: - Table view data source
     
     /*
