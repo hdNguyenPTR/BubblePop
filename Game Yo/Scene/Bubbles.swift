@@ -10,12 +10,16 @@ import Foundation
 import SpriteKit
 import GameplayKit
 
+// struct to randomize bubble
 struct Bubbles {
-
     
+    //function to return random colored bubble
     func createBubble() -> SKSpriteNode {
+        //local variable declaration
         let bubble = SKSpriteNode(imageNamed: "Circle White")
+        // set size
         bubble.size = CGSize(width: 50, height: 50)
+        // randomize color
         let r = Int(arc4random_uniform(99))
         switch(r){
         case 0..<40:
@@ -35,6 +39,7 @@ struct Bubbles {
             bubble.color = .black
         default: bubble.name = "sux"
         }
+        // set physics for bubble
         bubble.colorBlendFactor = 1
         bubble.physicsBody = SKPhysicsBody(circleOfRadius: bubble.size.height / 2) // 1
         bubble.physicsBody?.isDynamic = true // 2

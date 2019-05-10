@@ -70,7 +70,7 @@ class AppDelegate: UIResponder, UIApplicationDelegate {
     
     
     // MARK: - Core Data stack
-    // get
+    // get score function
     func getPoints() -> [HighScore] {
         let fetchRequest = NSFetchRequest<NSFetchRequestResult>(entityName: "HighScore")
         do {
@@ -80,7 +80,7 @@ class AppDelegate: UIResponder, UIApplicationDelegate {
         }
     }
     
-    // set
+    // set function
     func setPoints(name: String, score: Int64) {
         let points = HighScore(context: persistentContainer.viewContext)
         points.playerName = name
@@ -88,8 +88,27 @@ class AppDelegate: UIResponder, UIApplicationDelegate {
         self.saveContext()
     }
     
-    
-    // MARK: - Core Data Saving support
+    // get highscore function
+    func fetchMax() -> Int{
+        let fetchRequest = NSFetchRequest<NSFetchRequestResult>(entityName: "HighScore")
+        fetchRequest.fetchLimit = 1
+        let sortDescriptor = NSSortDescriptor(key: "score", ascending: false)
+        fetchRequest.sortDescriptors = [sortDescriptor]
+        do {
+            let results = try persistentContainer.viewContext.fetch(fetchRequest) as! [HighScore]
+            if (results.count > 0) {
+                for result in results {
+                    return Int(result.score)
+                }
+            } else {
+                print("No score")
+            }
+        } catch let error as NSError {
+            // failure
+            print("Fetch failed: \(error.localizedDescription)")
+        }
+        return 0
+    }
     
     func saveContext () {
         let context = persistentContainer.viewContext

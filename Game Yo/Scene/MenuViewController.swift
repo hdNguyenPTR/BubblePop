@@ -11,37 +11,35 @@ import UIKit
 
 class MenuViewController: UIViewController {
     
+    // outlet declaration
     @IBOutlet weak var nameTextField: UITextField!
-    @IBOutlet weak var addNewPlayer: UIButton!
     @IBOutlet weak var playButton: UIButton!
     
-    override func viewDidLoad() {
-        super.viewDidLoad()
-        // Do any additional setup after loading the view, typically from a nib.
-
-    }
-    
+    // run on menu finish loading
     override func viewWillAppear(_ animated: Bool) {
+        //local variable declaration
         let bubbleS = UserDefaults.standard.string(forKey: "maxBubble")
         let timeS = UserDefaults.standard.string(forKey: "timeMax")
+        // set default settings
         if bubbleS == nil  {
             UserDefaults.standard.set(15, forKey: "maxBubble")
         }
         if timeS == nil  {
             UserDefaults.standard.set(60, forKey: "timeMax")
         }
+        // dismiss keyboard event
         let tapGesture = UITapGestureRecognizer(target: self, action: #selector(dismissKeyboard))
         self.view.addGestureRecognizer(tapGesture)
     }
     
+    // action to show keyboard
     @IBAction func showKeyboard1(_ sender: Any) {
         self.nameTextField.becomeFirstResponder()
     }
-    
-    @IBAction func scoreButton(_ sender: Any) {
-    }
-    //
+
+    //action to make sure there is a player name
     @IBAction func finishInput(_ sender: Any) {
+        // check if there is player name
         if nameTextField.text != nil && nameTextField.text != "" {
             playButton.isEnabled = true
         }
@@ -50,12 +48,14 @@ class MenuViewController: UIViewController {
         }
     }
     
+    // save player name to userdefaults
     @IBAction func gameStart(_ sender: Any) {
         if nameTextField.text != nil{
             UserDefaults.standard.set( nameTextField.text! , forKey: "currentPlayer")
         }
     }
     
+    // function to dismiss keyboard
     @objc func dismissKeyboard() {
         nameTextField.resignFirstResponder()
     }
