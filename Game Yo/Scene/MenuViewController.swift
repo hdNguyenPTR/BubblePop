@@ -22,8 +22,14 @@ class MenuViewController: UIViewController {
     }
     
     override func viewWillAppear(_ animated: Bool) {
-        //UserDefaults.standard.set(8, forKey: "maxBubble")
-        //UserDefaults.standard.set(60, forKey: "timeMax")
+        let bubbleS = UserDefaults.standard.string(forKey: "maxBubble")
+        let timeS = UserDefaults.standard.string(forKey: "timeMax")
+        if bubbleS == nil  {
+            UserDefaults.standard.set(15, forKey: "maxBubble")
+        }
+        if timeS == nil  {
+            UserDefaults.standard.set(60, forKey: "timeMax")
+        }
         let tapGesture = UITapGestureRecognizer(target: self, action: #selector(dismissKeyboard))
         self.view.addGestureRecognizer(tapGesture)
     }
@@ -34,7 +40,7 @@ class MenuViewController: UIViewController {
     
     @IBAction func scoreButton(_ sender: Any) {
     }
-    
+    //
     @IBAction func finishInput(_ sender: Any) {
         if nameTextField.text != nil{
             playButton.isEnabled = true

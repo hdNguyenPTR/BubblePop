@@ -20,7 +20,7 @@ class ScoreTableViewController: UITableViewController {
     var highScoreArray: [Score] = [Score]()
     override func viewDidLoad() {
         super.viewDidLoad()
-        
+        navigationController?.setNavigationBarHidden(false, animated: false)
         // Uncomment the following line to preserve selection between presentations
         // self.clearsSelectionOnViewWillAppear = false
         
@@ -38,9 +38,9 @@ class ScoreTableViewController: UITableViewController {
         highScoreArray = retrievedPoints.map({
             convertToPointsArray(point: $0)
         })
-        
+
     }
-    
+
     func convertToPointsArray(point: HighScore) -> Score {
         let newScore = Score(playerName: point.playerName!, points: point.score)
         return newScore

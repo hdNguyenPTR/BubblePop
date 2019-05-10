@@ -125,8 +125,7 @@ class GameScene: SKScene {
             //print(bubbleArray)
             addChild(bubbleT)
             let actionSpawn = SKAction.fadeIn(withDuration: 1)
-            let actionMove = SKAction.move(to:  CGPoint(x: -bubbleT.size.width/2, y: actualY), duration: Double(levelTimerValue)/5.0)
-            //let actionDone = SKAction.removeFromParent()
+            let actionMove = SKAction.move(to:  CGPoint(x: -bubbleT.size.width/2, y: actualY), duration: Double(levelTimerValue)/10.0)
             bubbleT.run(SKAction.sequence([actionSpawn,actionMove]))
         }
         else{
@@ -143,8 +142,6 @@ class GameScene: SKScene {
         if currentPlayer != nil{
             appDelegate.setPoints(name: currentPlayer!, score: Int64(point))
         }
-        end.navigationController?.setNavigationBarHidden(true, animated: false)
-        currentViewController.navigationController?.setNavigationBarHidden(true, animated: false)
         currentViewController.present(end, animated: true, completion: nil)
         removeAction(forKey: "start")
     }
