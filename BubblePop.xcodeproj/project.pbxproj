@@ -41,7 +41,7 @@
 /* End PBXContainerItemProxy section */
 
 /* Begin PBXFileReference section */
-		F514B86E227974CC0077F95C /* Game Yo.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = "Game Yo.app"; sourceTree = BUILT_PRODUCTS_DIR; };
+		F514B86E227974CC0077F95C /* BubblePop.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = BubblePop.app; sourceTree = BUILT_PRODUCTS_DIR; };
 		F514B871227974CC0077F95C /* AppDelegate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AppDelegate.swift; sourceTree = "<group>"; };
 		F514B877227974CC0077F95C /* GameScene.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = GameScene.swift; sourceTree = "<group>"; };
 		F514B879227974CC0077F95C /* GameViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = GameViewController.swift; sourceTree = "<group>"; };
@@ -49,10 +49,10 @@
 		F514B87E227974CD0077F95C /* Assets.xcassets */ = {isa = PBXFileReference; lastKnownFileType = folder.assetcatalog; path = Assets.xcassets; sourceTree = "<group>"; };
 		F514B881227974CD0077F95C /* Base */ = {isa = PBXFileReference; lastKnownFileType = file.storyboard; name = Base; path = Base.lproj/LaunchScreen.storyboard; sourceTree = "<group>"; };
 		F514B883227974CD0077F95C /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
-		F514B888227974CD0077F95C /* Game YoTests.xctest */ = {isa = PBXFileReference; explicitFileType = wrapper.cfbundle; includeInIndex = 0; path = "Game YoTests.xctest"; sourceTree = BUILT_PRODUCTS_DIR; };
+		F514B888227974CD0077F95C /* BubblePopTests.xctest */ = {isa = PBXFileReference; explicitFileType = wrapper.cfbundle; includeInIndex = 0; path = BubblePopTests.xctest; sourceTree = BUILT_PRODUCTS_DIR; };
 		F514B88C227974CD0077F95C /* Game_YoTests.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Game_YoTests.swift; sourceTree = "<group>"; };
 		F514B88E227974CD0077F95C /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
-		F514B893227974CD0077F95C /* Game YoUITests.xctest */ = {isa = PBXFileReference; explicitFileType = wrapper.cfbundle; includeInIndex = 0; path = "Game YoUITests.xctest"; sourceTree = BUILT_PRODUCTS_DIR; };
+		F514B893227974CD0077F95C /* BubblePopUITests.xctest */ = {isa = PBXFileReference; explicitFileType = wrapper.cfbundle; includeInIndex = 0; path = BubblePopUITests.xctest; sourceTree = BUILT_PRODUCTS_DIR; };
 		F514B897227974CD0077F95C /* Game_YoUITests.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Game_YoUITests.swift; sourceTree = "<group>"; };
 		F514B899227974CD0077F95C /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
 		F514B8AA227991370077F95C /* Physics.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Physics.swift; sourceTree = "<group>"; };
@@ -101,9 +101,9 @@
 		F514B86F227974CC0077F95C /* Products */ = {
 			isa = PBXGroup;
 			children = (
-				F514B86E227974CC0077F95C /* Game Yo.app */,
-				F514B888227974CD0077F95C /* Game YoTests.xctest */,
-				F514B893227974CD0077F95C /* Game YoUITests.xctest */,
+				F514B86E227974CC0077F95C /* BubblePop.app */,
+				F514B888227974CD0077F95C /* BubblePopTests.xctest */,
+				F514B893227974CD0077F95C /* BubblePopUITests.xctest */,
 			);
 			name = Products;
 			sourceTree = "<group>";
@@ -157,8 +157,8 @@
 		F514B8A7227982FC0077F95C /* Scene */ = {
 			isa = PBXGroup;
 			children = (
-				F514B877227974CC0077F95C /* GameScene.swift */,
 				F514B879227974CC0077F95C /* GameViewController.swift */,
+				F514B877227974CC0077F95C /* GameScene.swift */,
 				F514B8AA227991370077F95C /* Physics.swift */,
 				F5ED45C5227BFB1E0049AC19 /* Bubbles.swift */,
 				F5F76E96228401920048D0EB /* MenuViewController.swift */,
@@ -181,9 +181,9 @@
 /* End PBXGroup section */
 
 /* Begin PBXNativeTarget section */
-		F514B86D227974CC0077F95C /* Game Yo */ = {
+		F514B86D227974CC0077F95C /* BubblePop */ = {
 			isa = PBXNativeTarget;
-			buildConfigurationList = F514B89C227974CD0077F95C /* Build configuration list for PBXNativeTarget "Game Yo" */;
+			buildConfigurationList = F514B89C227974CD0077F95C /* Build configuration list for PBXNativeTarget "BubblePop" */;
 			buildPhases = (
 				F514B86A227974CC0077F95C /* Sources */,
 				F514B86B227974CC0077F95C /* Frameworks */,
@@ -193,14 +193,14 @@
 			);
 			dependencies = (
 			);
-			name = "Game Yo";
+			name = BubblePop;
 			productName = "Game Yo";
-			productReference = F514B86E227974CC0077F95C /* Game Yo.app */;
+			productReference = F514B86E227974CC0077F95C /* BubblePop.app */;
 			productType = "com.apple.product-type.application";
 		};
-		F514B887227974CD0077F95C /* Game YoTests */ = {
+		F514B887227974CD0077F95C /* BubblePopTests */ = {
 			isa = PBXNativeTarget;
-			buildConfigurationList = F514B89F227974CD0077F95C /* Build configuration list for PBXNativeTarget "Game YoTests" */;
+			buildConfigurationList = F514B89F227974CD0077F95C /* Build configuration list for PBXNativeTarget "BubblePopTests" */;
 			buildPhases = (
 				F514B884227974CD0077F95C /* Sources */,
 				F514B885227974CD0077F95C /* Frameworks */,
@@ -211,14 +211,14 @@
 			dependencies = (
 				F514B88A227974CD0077F95C /* PBXTargetDependency */,
 			);
-			name = "Game YoTests";
+			name = BubblePopTests;
 			productName = "Game YoTests";
-			productReference = F514B888227974CD0077F95C /* Game YoTests.xctest */;
+			productReference = F514B888227974CD0077F95C /* BubblePopTests.xctest */;
 			productType = "com.apple.product-type.bundle.unit-test";
 		};
-		F514B892227974CD0077F95C /* Game YoUITests */ = {
+		F514B892227974CD0077F95C /* BubblePopUITests */ = {
 			isa = PBXNativeTarget;
-			buildConfigurationList = F514B8A2227974CD0077F95C /* Build configuration list for PBXNativeTarget "Game YoUITests" */;
+			buildConfigurationList = F514B8A2227974CD0077F95C /* Build configuration list for PBXNativeTarget "BubblePopUITests" */;
 			buildPhases = (
 				F514B88F227974CD0077F95C /* Sources */,
 				F514B890227974CD0077F95C /* Frameworks */,
@@ -229,9 +229,9 @@
 			dependencies = (
 				F514B895227974CD0077F95C /* PBXTargetDependency */,
 			);
-			name = "Game YoUITests";
+			name = BubblePopUITests;
 			productName = "Game YoUITests";
-			productReference = F514B893227974CD0077F95C /* Game YoUITests.xctest */;
+			productReference = F514B893227974CD0077F95C /* BubblePopUITests.xctest */;
 			productType = "com.apple.product-type.bundle.ui-testing";
 		};
 /* End PBXNativeTarget section */
@@ -257,7 +257,7 @@
 					};
 				};
 			};
-			buildConfigurationList = F514B869227974CC0077F95C /* Build configuration list for PBXProject "Game Yo" */;
+			buildConfigurationList = F514B869227974CC0077F95C /* Build configuration list for PBXProject "BubblePop" */;
 			compatibilityVersion = "Xcode 9.3";
 			developmentRegion = en;
 			hasScannedForEncodings = 0;
@@ -270,9 +270,9 @@
 			projectDirPath = "";
 			projectRoot = "";
 			targets = (
-				F514B86D227974CC0077F95C /* Game Yo */,
-				F514B887227974CD0077F95C /* Game YoTests */,
-				F514B892227974CD0077F95C /* Game YoUITests */,
+				F514B86D227974CC0077F95C /* BubblePop */,
+				F514B887227974CD0077F95C /* BubblePopTests */,
+				F514B892227974CD0077F95C /* BubblePopUITests */,
 			);
 		};
 /* End PBXProject section */
@@ -342,12 +342,12 @@
 /* Begin PBXTargetDependency section */
 		F514B88A227974CD0077F95C /* PBXTargetDependency */ = {
 			isa = PBXTargetDependency;
-			target = F514B86D227974CC0077F95C /* Game Yo */;
+			target = F514B86D227974CC0077F95C /* BubblePop */;
 			targetProxy = F514B889227974CD0077F95C /* PBXContainerItemProxy */;
 		};
 		F514B895227974CD0077F95C /* PBXTargetDependency */ = {
 			isa = PBXTargetDependency;
-			target = F514B86D227974CC0077F95C /* Game Yo */;
+			target = F514B86D227974CC0077F95C /* BubblePop */;
 			targetProxy = F514B894227974CD0077F95C /* PBXContainerItemProxy */;
 		};
 /* End PBXTargetDependency section */
@@ -493,6 +493,7 @@
 			buildSettings = {
 				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
 				CODE_SIGN_STYLE = Automatic;
+				DEVELOPMENT_TEAM = Me;
 				INFOPLIST_FILE = "Game Yo/Info.plist";
 				LD_RUNPATH_SEARCH_PATHS = (
 					"$(inherited)",
@@ -510,6 +511,7 @@
 			buildSettings = {
 				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
 				CODE_SIGN_STYLE = Automatic;
+				DEVELOPMENT_TEAM = Me;
 				INFOPLIST_FILE = "Game Yo/Info.plist";
 				LD_RUNPATH_SEARCH_PATHS = (
 					"$(inherited)",
@@ -538,7 +540,7 @@
 				PRODUCT_NAME = "$(TARGET_NAME)";
 				SWIFT_VERSION = 4.2;
 				TARGETED_DEVICE_FAMILY = "1,2";
-				TEST_HOST = "$(BUILT_PRODUCTS_DIR)/Game Yo.app/Game Yo";
+				TEST_HOST = "$(BUILT_PRODUCTS_DIR)/BubblePop.app/BubblePop";
 			};
 			name = Debug;
 		};
@@ -558,7 +560,7 @@
 				PRODUCT_NAME = "$(TARGET_NAME)";
 				SWIFT_VERSION = 4.2;
 				TARGETED_DEVICE_FAMILY = "1,2";
-				TEST_HOST = "$(BUILT_PRODUCTS_DIR)/Game Yo.app/Game Yo";
+				TEST_HOST = "$(BUILT_PRODUCTS_DIR)/BubblePop.app/BubblePop";
 			};
 			name = Release;
 		};
@@ -603,7 +605,7 @@
 /* End XCBuildConfiguration section */
 
 /* Begin XCConfigurationList section */
-		F514B869227974CC0077F95C /* Build configuration list for PBXProject "Game Yo" */ = {
+		F514B869227974CC0077F95C /* Build configuration list for PBXProject "BubblePop" */ = {
 			isa = XCConfigurationList;
 			buildConfigurations = (
 				F514B89A227974CD0077F95C /* Debug */,
@@ -612,7 +614,7 @@
 			defaultConfigurationIsVisible = 0;
 			defaultConfigurationName = Release;
 		};
-		F514B89C227974CD0077F95C /* Build configuration list for PBXNativeTarget "Game Yo" */ = {
+		F514B89C227974CD0077F95C /* Build configuration list for PBXNativeTarget "BubblePop" */ = {
 			isa = XCConfigurationList;
 			buildConfigurations = (
 				F514B89D227974CD0077F95C /* Debug */,
@@ -621,7 +623,7 @@
 			defaultConfigurationIsVisible = 0;
 			defaultConfigurationName = Release;
 		};
-		F514B89F227974CD0077F95C /* Build configuration list for PBXNativeTarget "Game YoTests" */ = {
+		F514B89F227974CD0077F95C /* Build configuration list for PBXNativeTarget "BubblePopTests" */ = {
 			isa = XCConfigurationList;
 			buildConfigurations = (
 				F514B8A0227974CD0077F95C /* Debug */,
@@ -630,7 +632,7 @@
 			defaultConfigurationIsVisible = 0;
 			defaultConfigurationName = Release;
 		};
-		F514B8A2227974CD0077F95C /* Build configuration list for PBXNativeTarget "Game YoUITests" */ = {
+		F514B8A2227974CD0077F95C /* Build configuration list for PBXNativeTarget "BubblePopUITests" */ = {
 			isa = XCConfigurationList;
 			buildConfigurations = (
 				F514B8A3227974CD0077F95C /* Debug */,

@@ -42,8 +42,11 @@ class MenuViewController: UIViewController {
     }
     //
     @IBAction func finishInput(_ sender: Any) {
-        if nameTextField.text != nil{
+        if nameTextField.text != nil && nameTextField.text != "" {
             playButton.isEnabled = true
+        }
+        else{
+            playButton.isEnabled = false
         }
     }
     

@@ -12,15 +12,13 @@ import GameplayKit
 
 class GameScene: SKScene {
     
+    var t = true
     let instructLabel = SKLabelNode(text: "Pop the Bubbles")
     var consecBubble:String = ""
     var bubbleArray: [SKSpriteNode] = []
     var pointLabel: SKLabelNode!
-    var point = 0 {
-        didSet{
-            pointLabel.text = "Points: \(point)"
-        }
-    }
+    var once = true
+    weak var currentViewController: GameViewController?
     var maxBubble:UInt32 = UInt32(UserDefaults.standard.integer(forKey: "maxBubble"))
     var levelTimerLabel: SKLabelNode!
     //Immediately after leveTimerValue variable is set, update label's text
@@ -29,32 +27,54 @@ class GameScene: SKScene {
             levelTimerLabel.text = "Time left: \(levelTimerValue)"
         }
     }
+    var point = 0 {
+        didSet{
+            pointLabel.text = "Points: \(point)"
+        }
+    }
     
     override func touchesEnded(_ touches: Set<UITouch>, with event: UIEvent?) {
         guard let touch = touches.first else {
             return
         }
-        let touchLocation = touch.location(in: self)
-        let pop = SKSpriteNode(imageNamed: "Circle White")
-        pop.size = CGSize(width: 20, height: 20)
-        pop.position = touchLocation
-        pop.physicsBody = SKPhysicsBody(circleOfRadius: pop.size.width/2)
-        pop.physicsBody?.isDynamic = true
-        pop.physicsBody?.categoryBitMask = PhysicsCategory.pop
-        pop.physicsBody?.contactTestBitMask = PhysicsCategory.bubble
-        pop.physicsBody?.collisionBitMask = PhysicsCategory.none
-        pop.physicsBody?.usesPreciseCollisionDetection = true
-        addChild(pop)
-        
-        let actionPop = SKAction.fadeOut(withDuration: 0.2)
-        let actionDone = SKAction.removeFromParent()
-        pop.run(SKAction.sequence([actionPop, actionDone]))
+        if t {
+            run(SKAction.repeatForever(SKAction.sequence([SKAction.run(randomBubble),SKAction.run(timer),SKAction.wait(forDuration: 1),SKAction.run(randomBubbleRemove)])
+            ),withKey: "start")
+            self.childNode(withName: "TapToPlay")?.removeFromParent()
+            t = false
+        }
+        else{
+            let touchLocation = touch.location(in: self)
+            let pop = SKSpriteNode(imageNamed: "Circle White")
+            pop.size = CGSize(width: 20, height: 20)
+            pop.position = touchLocation
+            pop.physicsBody = SKPhysicsBody(circleOfRadius: pop.size.width/2)
+            pop.physicsBody?.isDynamic = true
+            pop.physicsBody?.categoryBitMask = PhysicsCategory.pop
+            pop.physicsBody?.contactTestBitMask = PhysicsCategory.bubble
+            pop.physicsBody?.collisionBitMask = PhysicsCategory.none
+            pop.physicsBody?.usesPreciseCollisionDetection = true
+            addChild(pop)
+            
+            let actionPop = SKAction.fadeOut(withDuration: 0.2)
+            let actionDone = SKAction.removeFromParent()
+            pop.run(SKAction.sequence([actionPop, actionDone]))
+        }
+
     }
     
     override func didMove(to view: SKView) {
         physicsWorld.gravity = .zero
         physicsWorld.contactDelegate = self
         self.backgroundColor = .white
+        
+        let gameMessage = SKSpriteNode(imageNamed: "TapToPlay")
+        gameMessage.name = "TapToPlay"
+        gameMessage.position = CGPoint(x: frame.midX, y: frame.midY)
+        gameMessage.zPosition = 4
+        gameMessage.setScale(1.0)
+        addChild(gameMessage)
+        
         instructLabel.position = CGPoint(x: view.frame.width * 0.5, y: view.frame.height * 0.8)
         instructLabel.fontColor = .black
         pointLabel = SKLabelNode()
@@ -68,8 +88,7 @@ class GameScene: SKScene {
         addChild(levelTimerLabel)
         addChild(pointLabel)
         addChild(instructLabel)
-            run(SKAction.repeatForever(SKAction.sequence([SKAction.run(randomBubble),SKAction.run(timer),SKAction.wait(forDuration: 1),SKAction.run(randomBubbleRemove)])
-            ),withKey: "start")
+
     }
     
     func timer() {
@@ -105,9 +124,8 @@ class GameScene: SKScene {
     }
     
     func removeBubble(point: SKSpriteNode){
-        
         self.bubbleArray = self.bubbleArray.filter() {$0 != point}
-        point.run(SKAction.sequence([SKAction.resize(byWidth: 50, height: 50, duration: 0.5 ), SKAction.removeFromParent()]))
+        point.run(SKAction.sequence([SKAction.resize(byWidth: 50, height: 50, duration: 0.1 ), SKAction.removeFromParent()]))
     }
     
     func addBubble() {
@@ -125,7 +143,7 @@ class GameScene: SKScene {
             //print(bubbleArray)
             addChild(bubbleT)
             let actionSpawn = SKAction.fadeIn(withDuration: 1)
-            let actionMove = SKAction.move(to:  CGPoint(x: -bubbleT.size.width/2, y: actualY), duration: Double(levelTimerValue)/10.0)
+            let actionMove = SKAction.move(to:  CGPoint(x: -bubbleT.size.width*2, y: actualY), duration: Double(levelTimerValue)/10.0)
             bubbleT.run(SKAction.sequence([actionSpawn,actionMove]))
         }
         else{
@@ -134,15 +152,14 @@ class GameScene: SKScene {
         }
     
     func gameOver() {
-        let currentViewController:UIViewController = (UIApplication.shared.keyWindow?.rootViewController)!
-        let end = currentViewController.storyboard?.instantiateViewController(withIdentifier: "scoreVC") as! ScoreTableViewController
+
         let currentPlayer = UserDefaults.standard.string(forKey: "currentPlayer")
         let appDelegate = UIApplication.shared.delegate as! AppDelegate
-        
-        if currentPlayer != nil{
+        if currentPlayer != nil && once{
             appDelegate.setPoints(name: currentPlayer!, score: Int64(point))
+            once = false
+            currentViewController?.navigationController?.setNavigationBarHidden(false, animated: true)
         }
-        currentViewController.present(end, animated: true, completion: nil)
         removeAction(forKey: "start")
     }
     

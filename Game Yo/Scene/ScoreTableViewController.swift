@@ -20,18 +20,12 @@ class ScoreTableViewController: UITableViewController {
     var highScoreArray: [Score] = [Score]()
     override func viewDidLoad() {
         super.viewDidLoad()
-        navigationController?.setNavigationBarHidden(false, animated: false)
-        // Uncomment the following line to preserve selection between presentations
-        // self.clearsSelectionOnViewWillAppear = false
-        
-        // Uncomment the following line to display an Edit button in the navigation bar for this view controller.
-        // self.navigationItem.rightBarButtonItem = self.editButtonItem
     }
     
     override func viewWillAppear(_ animated: Bool) {
         let appDelegate = UIApplication.shared.delegate as! AppDelegate
         let retrievedPoints = appDelegate.getPoints()
-        
+        self.navigationController?.setNavigationBarHidden(false, animated: animated)
         for score in retrievedPoints {
             highScoreArray.append(convertToPointsArray(point: score))
         }
