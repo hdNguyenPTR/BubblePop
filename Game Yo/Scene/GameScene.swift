@@ -105,8 +105,9 @@ class GameScene: SKScene {
     }
     
     func removeBubble(point: SKSpriteNode){
+        
         self.bubbleArray = self.bubbleArray.filter() {$0 != point}
-        point.run(SKAction.removeFromParent())
+        point.run(SKAction.sequence([SKAction.resize(byWidth: 50, height: 50, duration: 0.5 ), SKAction.removeFromParent()]))
     }
     
     func addBubble() {
