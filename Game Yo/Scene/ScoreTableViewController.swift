@@ -8,6 +8,7 @@
 
 import Foundation
 import UIKit
+
 struct Score {
     
     var playerName : String
@@ -54,8 +55,8 @@ class ScoreTableViewController: UITableViewController {
     }
     
     override func tableView(_ tableView: UITableView, cellForRowAt indexPath: IndexPath) -> UITableViewCell {
+        self.highScoreArray.sort { $0.points > $1.points }
         let cell = tableView.dequeueReusableCell(withIdentifier: "scoreCell", for: indexPath)
-        
         cell.textLabel?.text = highScoreArray[indexPath.row].playerName
         cell.detailTextLabel?.text = String(highScoreArray[indexPath.row].points)
         

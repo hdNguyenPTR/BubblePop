@@ -22,8 +22,8 @@ class MenuViewController: UIViewController {
     }
     
     override func viewWillAppear(_ animated: Bool) {
-        UserDefaults.standard.set(8, forKey: "maxBubble")
-        UserDefaults.standard.set(60, forKey: "timeMax")
+        //UserDefaults.standard.set(8, forKey: "maxBubble")
+        //UserDefaults.standard.set(60, forKey: "timeMax")
         let tapGesture = UITapGestureRecognizer(target: self, action: #selector(dismissKeyboard))
         self.view.addGestureRecognizer(tapGesture)
     }
@@ -33,8 +33,6 @@ class MenuViewController: UIViewController {
     }
     
     @IBAction func scoreButton(_ sender: Any) {
-        let appDelegate = UIApplication.shared.delegate as! AppDelegate
-        appDelegate.setPoints(name: "testin", score: 123)
     }
     
     @IBAction func finishInput(_ sender: Any) {
@@ -44,9 +42,8 @@ class MenuViewController: UIViewController {
     }
     
     @IBAction func gameStart(_ sender: Any) {
-        let appDelegate = UIApplication.shared.delegate as! AppDelegate
         if nameTextField.text != nil{
-            appDelegate.setPoints(name: nameTextField.text!, score: 0)
+            UserDefaults.standard.set( nameTextField.text! , forKey: "currentPlayer")
         }
     }
     

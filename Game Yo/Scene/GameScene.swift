@@ -6,6 +6,7 @@
 //  Copyright © 2019 Huu Nguyen. All rights reserved.
 //
 
+import UIKit
 import SpriteKit
 import GameplayKit
 
@@ -61,17 +62,17 @@ class GameScene: SKScene {
         pointLabel.position = CGPoint(x: view.frame.width * 0.5, y: view.frame.height * 0.7)
         pointLabel.fontColor = .black
         levelTimerLabel = SKLabelNode()
-        levelTimerLabel.text = "Time left: 60"
+        levelTimerLabel.text = "Time left: \(levelTimerValue)"
         levelTimerLabel.position = CGPoint(x: view.frame.width * 0.5, y: view.frame.height * 0.9)
         levelTimerLabel.fontColor = .black
         addChild(levelTimerLabel)
         addChild(pointLabel)
         addChild(instructLabel)
-            run(SKAction.repeatForever(SKAction.sequence([SKAction.run(randomBubble),SKAction.run(timer),                                  SKAction.wait(forDuration: 1),SKAction.run(randomBubbleRemove)])
-            ))
+            run(SKAction.repeatForever(SKAction.sequence([SKAction.run(randomBubble),SKAction.run(timer),SKAction.wait(forDuration: 1),SKAction.run(randomBubbleRemove)])
+            ),withKey: "start")
     }
-
-    func timer(){
+    
+    func timer() {
         if self.levelTimerValue > 0 {
             self.levelTimerValue -= 1
         }
@@ -86,7 +87,7 @@ class GameScene: SKScene {
     }
     
     func randomBubble() {
-        let bubbleNumber = arc4random_uniform(maxBubble + 1)
+        let bubbleNumber = arc4random_uniform(maxBubble - UInt32(bubbleArray.count) + 1)
         run(SKAction.repeat(SKAction.run(addBubble), count:  Int(bubbleNumber)))
     }
     
@@ -122,16 +123,31 @@ class GameScene: SKScene {
             bubbleArray.append(bubbleT)
             //print(bubbleArray)
             addChild(bubbleT)
-            let actionMove = SKAction.fadeIn(withDuration: 1)
-            //let actionRemove = SKAction.run({self.removeBubble(point: bubbleT)})
+            let actionSpawn = SKAction.fadeIn(withDuration: 1)
+            let actionMove = SKAction.move(to:  CGPoint(x: -bubbleT.size.width/2, y: actualY), duration: Double(levelTimerValue)/5.0)
             //let actionDone = SKAction.removeFromParent()
-            bubbleT.run(actionMove)
+            bubbleT.run(SKAction.sequence([actionSpawn,actionMove]))
         }
         else{
-            
+            gameOver()
+            }
         }
+    
+    func gameOver() {
+        let currentViewController:UIViewController = (UIApplication.shared.keyWindow?.rootViewController)!
+        let end = currentViewController.storyboard?.instantiateViewController(withIdentifier: "scoreVC") as! ScoreTableViewController
+        let currentPlayer = UserDefaults.standard.string(forKey: "currentPlayer")
+        let appDelegate = UIApplication.shared.delegate as! AppDelegate
+        
+        if currentPlayer != nil{
+            appDelegate.setPoints(name: currentPlayer!, score: Int64(point))
+        }
+        end.navigationController?.setNavigationBarHidden(true, animated: false)
+        currentViewController.navigationController?.setNavigationBarHidden(true, animated: false)
+        currentViewController.present(end, animated: true, completion: nil)
+        removeAction(forKey: "start")
     }
-
+    
     func isPositionFilled(node: SKSpriteNode) -> Bool {
         var result = false
         for p in bubbleArray{

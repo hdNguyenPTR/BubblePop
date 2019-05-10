@@ -21,8 +21,8 @@ class GameViewController: UIViewController {
         skView.ignoresSiblingOrder = true
         scene.scaleMode = .resizeFill
         skView.presentScene(scene)
-        
     }
+    
     override func viewWillAppear(_ animated: Bool) {
         super.viewWillAppear(animated)
         navigationController?.setNavigationBarHidden(true, animated: animated)
@@ -37,9 +37,9 @@ class GameViewController: UIViewController {
         navigationController?.setNavigationBarHidden(false, animated: animated)
     }
 
-    override var shouldAutorotate: Bool {
-        return false
-    }
+//    override var shouldAutorotate: Bool {
+//        return false
+//    }
 }
 //
 //    override var supportedInterfaceOrientations: UIInterfaceOrientationMask {
